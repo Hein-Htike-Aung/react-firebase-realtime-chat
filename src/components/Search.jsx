@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Search = () => {
+  const [username, setUsername] = useState("");
+  const [user, setUser] = useState(null);
+  const [err, setErr] = useState(false);
+
+  const handleSearch = () => {
+    
+  };
+
+  const handleKeyDown = (e) => {
+    e.code === "Enter" && handleSearch();
+  };
+
   return (
     <div className="search">
       <div className="searchForm">
-        <input type="text" placeholder="Find a user" />
+        <input
+          type="text"
+          placeholder="Find a user"
+          onKeyDown={handleKeyDown}
+          onChange={(e) => setUsername(e.target.value)}
+        />
       </div>
       <div className="userChat">
         <img
@@ -12,7 +29,7 @@ const Search = () => {
           alt=""
         />
         <div className="userChatInfo">
-            <span>Jane</span>
+          <span>Jane</span>
         </div>
       </div>
     </div>
