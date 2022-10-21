@@ -34,7 +34,6 @@ const Search = () => {
         setUser(doc.data());
       });
     } catch (error) {
-      console.log(error);
       setErr(true);
     }
   };
@@ -73,16 +72,15 @@ const Search = () => {
           },
           [combineId + ".date"]: serverTimestamp(),
         });
-
-        dispatch({
-          type: "CHANGE_USER",
-          payload: {
-            uid: currentUser.uid,
-            displayName: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-          },
-        });
       }
+      dispatch({
+        type: "CHANGE_USER",
+        payload: {
+          uid: currentUser.uid,
+          displayName: currentUser.displayName,
+          photoURL: currentUser.photoURL,
+        },
+      });
     } catch (error) {}
 
     setUser(null);

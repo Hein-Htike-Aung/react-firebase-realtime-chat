@@ -26,11 +26,13 @@ const Register = () => {
       await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadUrl) => {
           try {
+            // upload photo
             await updateProfile(res.user, {
               displayName,
               photoURL: downloadUrl,
             });
 
+            // create user
             await setDoc(doc(db, "users", res.user.uid), {
               uid: res.user.uid,
               displayName,
@@ -38,17 +40,16 @@ const Register = () => {
               photoURL: downloadUrl,
             });
 
+            // create userChats -> to know who is the user chatting with currently
             await setDoc(doc(db, "userChats", res.user.uid), {});
 
             navigate("/");
           } catch (error) {
-            console.log(err);
             setErr(true);
           }
         });
       });
     } catch (error) {
-      console.log(error);
       setErr(true);
     }
   };

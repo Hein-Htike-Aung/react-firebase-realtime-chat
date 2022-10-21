@@ -21,8 +21,6 @@ export const Messages = () => {
     }
   }, [data.chatId]);
 
-  console.log("messages", messages);
-
   return (
     <div className="messages">
       {messages &&
